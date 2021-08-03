@@ -40,7 +40,7 @@ public class TestStudentRegistrationForm {
 
         Configuration.browserCapabilities = capabilities;
         Configuration.startMaximized = true;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub/";
+        Configuration.remote = "https://user1:1234@" + System.getProperty("selenoidUrl");
     }
 
     @AfterEach
