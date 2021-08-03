@@ -26,18 +26,21 @@ dependencies {
     testImplementation(
             "com.codeborne:selenide:$selenideVersion",
             "org.junit.jupiter:junit-jupiter-api:$junitVersion",
-            "com.github.javafaker:javafaker:1.0.2")
+            "com.github.javafaker:javafaker:1.0.2",
+            "org.aeonbits.owner:owner:1.0.12")
 
     testRuntimeOnly(
             "org.junit.jupiter:junit-jupiter-engine:$junitVersion",
-            "org.slf4j:slf4j-simple:1.7.30")
+            "org.slf4j:slf4j-simple:1.7.32")
 }
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-test {
+tasks.withType(Test) {
+    systemProperties(System.getProperties())
+    systemProperty("selenoidUrl", System.getProperty("selenoidUrl", "selenoid.autotests.cloud/wd/hub/"))
     useJUnitPlatform()
 
     testLogging {
