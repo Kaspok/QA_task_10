@@ -12,6 +12,9 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.text.DecimalFormat;
 
+import static com.demoqa.config.Credentials.credentialsConfig;
+import static java.lang.String.format;
+
 public class TestStudentRegistrationForm {
     Faker faker = new Faker();
     DecimalFormat dF = new DecimalFormat("00");
@@ -34,13 +37,15 @@ public class TestStudentRegistrationForm {
 
     @BeforeAll
     static void setup() {
+        String login = credentialsConfig.login();
+        String password = credentialsConfig.password();
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
 
         Configuration.browserCapabilities = capabilities;
         Configuration.startMaximized = true;
-        Configuration.remote = "https://user1:1234@" + System.getProperty("selenoidUrl");
+        Configuration.remote = format("https://%s:%s@" + System.getProperty("selenoidUrl"), login, password);
     }
 
     @AfterEach
