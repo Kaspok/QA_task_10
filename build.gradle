@@ -7,8 +7,8 @@ repositories {
     mavenCentral()
 }
 
-def allureVersion = "2.13.9",
-    selenideVersion = "5.23.0",
+def allureVersion = "2.14.0",
+    selenideVersion = "5.23.2",
     junitVersion = "5.7.2"
 
 allure {
@@ -25,6 +25,7 @@ allure {
 dependencies {
     testImplementation(
             "com.codeborne:selenide:$selenideVersion",
+            "io.qameta.allure:allure-selenide:$allureVersion",
             "org.junit.jupiter:junit-jupiter-api:$junitVersion",
             "com.github.javafaker:javafaker:1.0.2",
             "org.aeonbits.owner:owner:1.0.12")
